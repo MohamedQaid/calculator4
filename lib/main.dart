@@ -1,8 +1,12 @@
+import 'package:calculator4/src/provider/provider_theme.dart';
 import 'package:calculator4/src/views/screens/calculator_home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ProviderTheme()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,8 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: CalculatorHome(),
+    return MaterialApp(
+      theme: Provider.of<ProviderTheme>(context).currentTheme,
+      home: const CalculatorHome(),
     );
   }
 }
