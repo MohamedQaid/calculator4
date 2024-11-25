@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/app_bar.dart';
 import '../widgets/custom_board_button.dart';
+import '../widgets/custom_text_box_calculator.dart';
 
 class CalculatorHome extends StatelessWidget {
   const CalculatorHome({super.key});
@@ -10,24 +10,28 @@ class CalculatorHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
               flex: 1,
-              child: Container(
-                color: Colors.blue,
+              child: CustomTextBoxCalculator(
+                textString: '= 8743987394739',
               )),
           Expanded(
               flex: 2,
-              child: Container(
-                color: Colors.green,
+              child: CustomTextBoxCalculator(
+                fontSize: 40,
+                textString: '10002+49494',
               )),
           Expanded(
               flex: 1,
-              child: Container(
-                color: Colors.deepOrange,
+              child: CustomTextBoxCalculator(
+                textDirection: TextDirection.rtl,
+                textString: 'تجربة ',
+                alignment: Alignment.center,
+                fontSize: 22,
               )),
-          const Expanded(flex: 6, child: CustomBoardButton()),
+          Expanded(flex: 6, child: CustomBoardButton()),
         ],
       ),
     );
