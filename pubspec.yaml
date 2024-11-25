@@ -71,7 +71,6 @@ flutter:
     - family: Tido
       fonts:
         - asset: assets/fonts/tido-r.otf
-        - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

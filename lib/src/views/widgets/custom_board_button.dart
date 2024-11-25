@@ -1,4 +1,7 @@
+import 'package:calculator4/src/provider/provider_theme.dart';
+import 'package:calculator4/src/theme/color_app.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'custom_button_calculator.dart';
 
 class CustomBoardButton extends StatelessWidget {
@@ -8,46 +11,137 @@ class CustomBoardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final bool isLightEnable =
+        Provider.of<ProviderTheme>(context).modeThemeLightEnable;
+    return Column(
       children: [
         Row(
           children: [
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
+            CustomButtonCalculator(
+              titleButton: 'c',
+              colorButton: isLightEnable
+                  ? ColorApp.colorSecondLight
+                  : ColorApp.colorSecondDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '-/+',
+              colorButton: isLightEnable
+                  ? ColorApp.colorSecondLight
+                  : ColorApp.colorSecondDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '%',
+              colorButton: isLightEnable
+                  ? ColorApp.colorSecondLight
+                  : ColorApp.colorSecondDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '÷',
+              colorButton: isLightEnable
+                  ? ColorApp.colorPrimaryLight
+                  : ColorApp.colorPrimaryDark,
+              colorTitleButton: ColorApp.colorLight,
+            ),
           ],
         ),
         Row(
           children: [
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
+            CustomButtonCalculator(
+              titleButton: '7',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '8',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '9',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+                titleButton: 'x',
+                colorButton: isLightEnable
+                    ? ColorApp.colorPrimaryLight
+                    : ColorApp.colorPrimaryDark,
+                colorTitleButton: ColorApp.colorLight),
           ],
         ),
         Row(
           children: [
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
+            CustomButtonCalculator(
+              titleButton: '6',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '5',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '4',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+                titleButton: '-',
+                colorButton: isLightEnable
+                    ? ColorApp.colorPrimaryLight
+                    : ColorApp.colorPrimaryDark,
+                colorTitleButton: ColorApp.colorLight),
           ],
         ),
         Row(
           children: [
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
+            CustomButtonCalculator(
+              titleButton: '3',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '2',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '1',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+                titleButton: '+',
+                colorButton: isLightEnable
+                    ? ColorApp.colorPrimaryLight
+                    : ColorApp.colorPrimaryDark,
+                colorTitleButton: ColorApp.colorLight),
           ],
         ),
         Row(
           children: [
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
-            CustomButtonCalculator(),
+            CustomButtonCalculator(
+              titleButton: '0',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: '.',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+              titleButton: 'del',
+              colorButton:
+                  isLightEnable ? ColorApp.colorLight : ColorApp.colorDark,
+            ),
+            CustomButtonCalculator(
+                titleButton: '=',
+                colorButton: isLightEnable
+                    ? ColorApp.colorPrimaryLight
+                    : ColorApp.colorPrimaryDark,
+                colorTitleButton: ColorApp.colorLight),
           ],
         ),
       ],

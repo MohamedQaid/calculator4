@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class CustomButtonCalculator extends StatelessWidget {
   const CustomButtonCalculator({
     super.key,
+    required this.titleButton,
+    required this.colorButton,
+    this.colorTitleButton ,
   });
+
+  final String titleButton;
+  final Color colorButton;
+  final Color? colorTitleButton;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +20,11 @@ class CustomButtonCalculator extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
         height: MediaQuery.sizeOf(context).height / 11,
         decoration: BoxDecoration(
-            color: Colors.blue, borderRadius: BorderRadius.circular(8)),
-        child: const Text(
-          '4',
+            color: colorButton, borderRadius: BorderRadius.circular(8)),
+        child: Text(
+          titleButton,
           style: TextStyle(
-            color: Colors.white,
+            color: colorTitleButton,
             fontSize: 22,
           ),
         ),
