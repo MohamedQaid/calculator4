@@ -1,3 +1,4 @@
+import 'package:calculator4/src/views/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorHome extends StatelessWidget {
@@ -5,8 +6,11 @@ class CalculatorHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('test run'),
+    return Scaffold(
+      appBar: appBar(context),
+      body: Container(
+        child: const Text('test run'),
+      ),
     );
   }
 }
