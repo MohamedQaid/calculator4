@@ -13,10 +13,8 @@ class ProviderCalculator extends ChangeNotifier {
     switch (inputButton) {
       case 'c':
         return clear();
-
       case 'del':
         return delete();
-
       case '0':
       case '1':
       case '2':
@@ -29,8 +27,16 @@ class ProviderCalculator extends ChangeNotifier {
       case '9':
       case '.':
         _expressionInput += inputButton;
-
         break;
+
+      case '+':
+      case '-':
+      case 'x':
+      case '÷':
+      case '%':
+        addOperation(inputButton);
+        break;
+
       default:
     } // end switch
     notifyListeners();
@@ -48,4 +54,23 @@ class ProviderCalculator extends ChangeNotifier {
         _expressionInput.substring(0, _expressionInput.length - 1);
     notifyListeners();
   } // end delete fun
+
+  bool isTestLastChar(String lastChar) {
+    return lastChar == '+' ||
+        lastChar == '-' ||
+        lastChar == 'x' ||
+        lastChar == '÷' ||
+        lastChar == '%';
+  }
+
+  addOperation(String inputButton) {
+    if (inputButton.isNotEmpty) {
+      String lastChar = _expressionInput[_expressionInput.length - 1];
+      if (!isTestLastChar(lastChar)) {
+        _expressionInput += inputButton;
+      }
+    } else {
+      _expressionInput += inputButton;
+    }
+  }
 } // end class
