@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class ProviderCalculator extends ChangeNotifier {
   String _expressionInput = '11+11';
@@ -15,6 +16,7 @@ class ProviderCalculator extends ChangeNotifier {
         return clear();
       case 'del':
         return delete();
+
       case '0':
       case '1':
       case '2':
@@ -37,6 +39,8 @@ class ProviderCalculator extends ChangeNotifier {
         addOperation(inputButton);
         break;
 
+      case '=':
+        return equal();
       default:
     } // end switch
     notifyListeners();
@@ -72,5 +76,25 @@ class ProviderCalculator extends ChangeNotifier {
     } else {
       _expressionInput += inputButton;
     }
+  } // ! End add Operation
+
+  equal() {
+    try {
+      String inputExpression = _expressionInput;
+      inputExpression = inputExpression.replaceAll('x', '*');
+      inputExpression = inputExpression.replaceAll('÷', '/');
+
+      Parser parser = Parser();
+      Expression expression = parser.parse(inputExpression);
+
+      ContextModel contextModel = ContextModel();
+      double evaluate = expression.evaluate(EvaluationType.REAL, contextModel);
+
+      _calculatedResult = evaluate.toString();
+    } catch (e) {
+      _calculatedResult = 'Error 😒';
+      _calculatorFeedback = ' مش كذا 🙄';
+    }
+    notifyListeners();
   }
-} // end class
+} //! end class
