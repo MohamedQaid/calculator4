@@ -7,7 +7,9 @@ AppBar appBar(context) {
     centerTitle: true,
     title: const Text(
       'Calculator 0-0',
-      style: TextStyle(),
+      style: TextStyle(
+        fontFamily: 'Tido'
+      ),
     ),
     leading: InkWell(
       onTap: () {

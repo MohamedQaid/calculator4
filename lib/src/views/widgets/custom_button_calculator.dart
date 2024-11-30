@@ -31,6 +31,7 @@ class CustomButtonCalculator extends StatelessWidget {
           child: Text(
             titleButton,
             style: TextStyle(
+              fontFamily: 'Tido',
               color: colorTitleButton,
               fontSize: 22,
             ),

@@ -24,7 +24,7 @@ class CustomBoardButton extends StatelessWidget {
                   : ColorApp.colorSecondDark,
             ),
             CustomButtonCalculator(
-              titleButton: '-/+',
+              titleButton: '00',
               colorButton: isLightEnable
                   ? ColorApp.colorSecondLight
                   : ColorApp.colorSecondDark,

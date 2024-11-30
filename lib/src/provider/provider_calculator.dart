@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class ProviderCalculator extends ChangeNotifier {
-  String _expressionInput = '11+11';
-  String _calculatedResult = '=22';
-  String _calculatorFeedback = 'ok';
+  String _expressionInput = '';
+  String _calculatedResult = '';
+  String _calculatorFeedback = '🔻 لنبدأ 👌🏻';
 
   String get expressionInput => _expressionInput;
   String get calculatedResult => _calculatedResult;
@@ -28,6 +28,7 @@ class ProviderCalculator extends ChangeNotifier {
       case '8':
       case '9':
       case '.':
+      case '00':
         _expressionInput += inputButton;
         break;
 
@@ -40,43 +41,51 @@ class ProviderCalculator extends ChangeNotifier {
         break;
 
       case '=':
-        return equal();
+        equal();
       default:
-    } // end switch
+    } //! end switch
     notifyListeners();
-  } // end fun
+  } //! end fun
 
   clear() {
     _calculatedResult = '';
     _expressionInput = '';
     _calculatorFeedback = '';
     notifyListeners();
-  } // end clear fun
+  } //! end clear fun
 
   delete() {
-    _expressionInput =
-        _expressionInput.substring(0, _expressionInput.length - 1);
+    if (_expressionInput.isNotEmpty) {
+      _expressionInput =
+          _expressionInput.substring(0, _expressionInput.length - 1);
+    }
     notifyListeners();
-  } // end delete fun
+  } //! end delete fun
 
-  bool isTestLastChar(String lastChar) {
-    return lastChar == '+' ||
-        lastChar == '-' ||
-        lastChar == 'x' ||
-        lastChar == '÷' ||
-        lastChar == '%';
+  checkLastChar(checkInputOperation) {
+    if (checkInputOperation = _expressionInput.endsWith('%') ||
+        _expressionInput.endsWith('x') ||
+        _expressionInput.endsWith('+') ||
+        _expressionInput.endsWith('-') ||
+        _expressionInput.endsWith('÷')) {
+      return true;
+    }
   }
 
-  addOperation(String inputButton) {
-    if (inputButton.isNotEmpty) {
-      String lastChar = _expressionInput[_expressionInput.length - 1];
-      if (!isTestLastChar(lastChar)) {
-        _expressionInput += inputButton;
+  void addOperation(String inputOperation) {
+    if (_expressionInput.isNotEmpty) {
+      if (checkLastChar(inputOperation) == true) {
+        _calculatorFeedback =  '🙄';
+      } else {
+        _expressionInput += inputOperation;
       }
-    } else {
-      _expressionInput += inputButton;
+      notifyListeners();
     }
-  } // ! End add Operation
+    if (_expressionInput.isEmpty && inputOperation == '-') {
+      _expressionInput += inputOperation;
+    }
+    notifyListeners();
+  }
 
   equal() {
     try {
@@ -91,10 +100,14 @@ class ProviderCalculator extends ChangeNotifier {
       double evaluate = expression.evaluate(EvaluationType.REAL, contextModel);
 
       _calculatedResult = evaluate.toString();
+      if (_calculatedResult.endsWith('.0')) {
+        _calculatedResult = _calculatedResult.replaceAll('.0', '');
+      }
+
     } catch (e) {
       _calculatedResult = 'Error 😒';
       _calculatorFeedback = ' مش كذا 🙄';
     }
     notifyListeners();
-  }
+  } //! end equal
 } //! end class

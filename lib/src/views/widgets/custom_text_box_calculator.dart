@@ -35,6 +35,7 @@ class CustomTextBoxCalculator extends StatelessWidget {
         maxLines: maxLines,
         textString,
         style: TextStyle(
+          fontFamily: 'Tido',
           fontSize: fontSize,
           color: colorText,
         ),
